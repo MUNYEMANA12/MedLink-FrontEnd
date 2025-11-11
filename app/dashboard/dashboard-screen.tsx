@@ -217,9 +217,15 @@ export function DashboardScreen() {
 
   const isLoading = data === null
 
-  const organisations = data?.organisations ?? []
-  const organisationTypes = data?.organisationTypes ?? []
-  const users = data?.users ?? []
+  const organisations = useMemo(
+    () => (data ? data.organisations : []),
+    [data]
+  )
+  const organisationTypes = useMemo(
+    () => (data ? data.organisationTypes : []),
+    [data]
+  )
+  const users = useMemo(() => (data ? data.users : []), [data])
 
   const totalActiveUsers = useMemo(
     () => users.filter((user) => user.is_active).length,
