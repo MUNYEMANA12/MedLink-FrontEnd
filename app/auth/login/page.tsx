@@ -1,54 +1,61 @@
 import Link from "next/link"
-import { Metadata } from "next"
-import { ArrowLeft } from "lucide-react"
-
-import { LoginForm } from "@/components/auth/login-form"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-
-export const metadata: Metadata = {
-  title: "Log in | MedLink Rwanda",
-}
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function LoginPage() {
   return (
-    <div className="mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-4xl flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-6">
-        <Button variant="ghost" size="sm" asChild className="-ml-2 w-fit">
-          <Link href="/" className="flex items-center gap-2">
-            <ArrowLeft className="size-4" />
-            Back to home
-          </Link>
-        </Button>
-        <Card>
-          <CardHeader className="space-y-2 text-center">
-            <div className="flex justify-center">
-              <Badge variant="outline" className="uppercase tracking-wide">
-                Mock auth
-              </Badge>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl font-bold text-center">Login to MedLink</CardTitle>
+          <CardDescription className="text-center">
+            Enter your credentials to access your account
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form className="space-y-4">
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium">
+                Email
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                required
+              />
             </div>
-            <CardTitle className="text-2xl font-semibold">
-              Sign in to MedLink
-            </CardTitle>
-            <p className="text-sm text-muted-foreground">
-              Use the credential patterns below to simulate the upcoming
-              authentication experience.
-            </p>
-          </CardHeader>
-          <CardContent>
-            <LoginForm />
-          </CardContent>
-        </Card>
-        <div className="text-center text-xs text-muted-foreground">
-          <p>
-            Hint: Try{" "}
-            <span className="font-medium">danny.niyonzima@gmail.com</span> with
-            any 6+ character password to go through the flow.
-          </p>
-        </div>
-      </div>
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium">
+                Password
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+              Sign In
+            </Button>
+          </form>
+          <div className="mt-4 text-center">
+            <Link href="/auth/forgot-password" className="text-sm text-blue-600 hover:underline">
+              Forgot your password?
+            </Link>
+          </div>
+          <div className="mt-4 text-center">
+            <span className="text-sm text-gray-600">
+              Don't have an account?{" "}
+              <Link href="/auth/signup" className="text-blue-600 hover:underline">
+                Sign up
+              </Link>
+            </span>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
-

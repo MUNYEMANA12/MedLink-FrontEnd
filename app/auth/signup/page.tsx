@@ -1,60 +1,102 @@
 import Link from "next/link"
-import { Metadata } from "next"
-import { ArrowLeft, Sparkles } from "lucide-react"
-
-import { SignupForm } from "@/components/auth/signup-form"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-
-export const metadata: Metadata = {
-  title: "Sign up | MedLink Rwanda",
-}
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function SignupPage() {
   return (
-    <div className="mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-4xl flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-      <div className="w-full max-w-2xl space-y-6">
-        <Button variant="ghost" size="sm" asChild className="-ml-2 w-fit">
-          <Link href="/auth/login" className="flex items-center gap-2">
-            <ArrowLeft className="size-4" />
-            Already have an account?
-          </Link>
-        </Button>
-        <Card>
-          <CardHeader className="space-y-3 text-center">
-            <div className="flex justify-center">
-              <Badge variant="outline" className="uppercase tracking-wide">
-                Early access
-              </Badge>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl font-bold text-center">Join MedLink Rwanda</CardTitle>
+          <CardDescription className="text-center">
+            Create your account to access healthcare services
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label htmlFor="firstName" className="text-sm font-medium">
+                  First Name
+                </label>
+                <Input
+                  id="firstName"
+                  type="text"
+                  placeholder="First name"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="lastName" className="text-sm font-medium">
+                  Last Name
+                </label>
+                <Input
+                  id="lastName"
+                  type="text"
+                  placeholder="Last name"
+                  required
+                />
+              </div>
             </div>
-            <CardTitle className="text-2xl font-semibold">
-              Request MedLink access
-            </CardTitle>
-            <CardDescription>
-              Fill in your organisation details and we will onboard you once the
-              pilot programme expands.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <SignupForm />
-          </CardContent>
-        </Card>
-        <div className="flex items-start gap-3 rounded-lg border border-dashed border-primary/30 bg-primary/5 p-4 text-sm text-muted-foreground">
-          <Sparkles className="mt-0.5 size-4 text-primary" />
-          <p>
-            Tip: Use your Rwanda-based organisation name and contact details to
-            keep everything aligned with the MedLink pilot records.
-          </p>
-        </div>
-      </div>
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium">
+                Email
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="phone" className="text-sm font-medium">
+                Phone Number
+              </label>
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="+250 XXX XXX XXX"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium">
+                Password
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Create a password"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="confirmPassword" className="text-sm font-medium">
+                Confirm Password
+              </label>
+              <Input
+                id="confirmPassword"
+                type="password"
+                placeholder="Confirm your password"
+                required
+              />
+            </div>
+            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+              Create Account
+            </Button>
+          </form>
+          <div className="mt-4 text-center">
+            <span className="text-sm text-gray-600">
+              Already have an account?{" "}
+              <Link href="/auth/login" className="text-blue-600 hover:underline">
+                Sign in
+              </Link>
+            </span>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
-
